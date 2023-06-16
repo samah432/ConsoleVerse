@@ -10,7 +10,10 @@ export const NavBar = () => {
                 <Link className="navbar__link" to="/consoles">Consoles</Link>
             </li>
             <li className="navbar__item active">
-                <Link className="navbar__link" to="/consoles">Manufacturers</Link>
+                <Link className="navbar__link" to="/manufacturers">Manufacturers</Link>
+            </li>
+            <li className="navbar__item active">
+                <Link className="navbar__link" to="/myconsoles">My Consoles</Link>
             </li>
             {
                 localStorage.getItem("honey_user")

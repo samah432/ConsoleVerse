@@ -1,0 +1,10 @@
+.ManuImg {
+    width: 20rem;
+}
+
+.manufacturers {
+    border: 1px solid #ccc;
+    padding: 40px;
+    background-color: #f2f2f2;
+    margin-bottom: 20px;
+}

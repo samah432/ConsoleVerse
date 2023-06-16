@@ -20,13 +20,13 @@ export const ManufacturerList = () => {
     return <>
         <h2>List of Manufacturers</h2>
 
-        <article className="manufacturers">
+        <article className="manufacturer">
             {
                 manufacturers.map(
                     (manufacturer) => {
                         return <section className="manufacturers">
-
-
+                            {<img className="ManuImg" src={manufacturer.image} alt="ManuImg" />}
+                            <footer>{manufacturer.overview}</footer>
                         </section>
                     }
                 )
