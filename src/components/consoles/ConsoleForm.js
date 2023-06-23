@@ -2,43 +2,33 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
 export const ConsoleForm = () => {
-    /*
-        TODO: Add the correct default properties to the
-        initial state object
-    */
     const [console, update] = useState({
         description: "",
         name: ""
     })
 
+    const [manufacturers, updateManufacturers] = useState([])
+    const [manufacturerId, updateManufacturerId] = useState("")
+    const navigate = useNavigate()
     useEffect(
         () => {
-            fetch(`http://localhost:8088/MyConsoles`)
+            fetch(`http://localhost:8088/Manufacturers`)
                 .then(response => response.json())
-                .then((ConsoleArray) => {
-                    update(ConsoleArray)
+                .then((manufacturersArray) => {
+                    updateManufacturers(manufacturersArray)
                 })
         },
+
         [] 
     )
-    /*
-        TODO: Use the useNavigation() hook so you can redirect
-        the user to the Console list
-    */
-    const navigate = useNavigate()
-    const localHoneyUser = localStorage.getItem("honey_user")
-    const honeyUserObject = JSON.parse(localHoneyUser)
 
-
-
-    
     const handleSaveButtonClick = (event) => {
         event.preventDefault()
 
 
     // TODO: Create the object to be saved to the API
     const ConsoleToSendToAPI = {
-        userId: honeyUserObject.id,
+        userId: manufacturerId.id,
         name: console.name,
         description: console.description
     }
@@ -97,7 +87,23 @@ export const ConsoleForm = () => {
                         } />
                 </div>
             </fieldset>
-            <button 
+
+            <div className="form-group">
+                <label htmlFor="manufacturer">Manufacturer:</label>
+                <select name="manufacturer" id="manufacturer" value={console.manufacturer} onChange={(event) => {
+                    const copy = {...console}
+                    copy.manufacturer = event.target.value
+                    update(copy)
+                    updateManufacturerId(event.target.value)
+                }}>
+                    <option value="">Select a manufacturer</option>
+                    {manufacturers.map((manufacturer) => (
+                        <option value={manufacturer.company}>{manufacturer.company}</option>
+                    ))}
+                </select>
+
+            </div>
+                <button 
             onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
             className="btn btn-primary">
                 Submit Console

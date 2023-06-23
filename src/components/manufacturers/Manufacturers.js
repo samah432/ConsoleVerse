@@ -24,10 +24,12 @@ export const ManufacturerList = () => {
             {
                 manufacturers.map(
                     (manufacturer) => {
-                        return <section className="manufacturers">
+                        return (
+                         <section className="manufacturers">
                             {<img className="ManuImg" src={manufacturer.image} alt="ManuImg" />}
                             <footer>{manufacturer.overview}</footer>
                         </section>
+                        )
                     }
                 )
             }
